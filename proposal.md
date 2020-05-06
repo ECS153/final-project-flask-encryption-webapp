@@ -1,0 +1,7 @@
+# Proposal
+
+Our project aims to solve the problem of communicating messages over an unsecured network. This is important because it concerns data privacy and secure communication. The database storing the messages will only have the encrypted messages, so even the application owner cannot access the message contents. The threat model we are targeting is that the network may be compromised (i.e. Starbucks wifi) and an adversary may have access to all network traffic.
+
+This will be built with a Flask app acting as a local client that accesses the database. The encryption method used for the messages will be implemented from a Python library. The specific library is yet to be determined. User accounts and the database will all be managed through Firebase, allowing us to abstract away the complexities of secure authentication while keeping the messaging client local. Thus, we are assuming that Google is a secure authentication resource and the local machine itself is not compromised.
+
+Our expected results are to have built a fully working messaging web application with end to end encryption. We expect to be able to send messages to other users having the message data encrypted on the device before anything is sent to the server. This should work like a basic email client/instant messaging service. Inspecting the network packets will not reveal any information about the contents of the individual messages, their origin, or the destination.
