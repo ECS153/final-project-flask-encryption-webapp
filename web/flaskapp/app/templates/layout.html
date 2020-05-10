@@ -1,0 +1,53 @@
+<!doctype HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Core Bootstrap CSS -->
+  <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <!-- Icon Library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@coreui/coreui/dist/css/coreui.min.css">
+  <!-- JS and jquery -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="//apis.google.com/js/platform.js" async defer></script>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/style.css')}}">
+  <!-- Font -->
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+  <!-- Bootstrap JS and Jquery -->
+  <!-- Note: DO NOT MOVE, INCLUDING THESE AT THE END CAUSES NAVBAR TO NOT COLLAPSE-->
+  <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
+
+  {% block head %}
+  {% endblock %}
+  <!-- Page title -->
+  {% if title %}
+  <title>ECS153 - {{ title }}</title>
+  {% else %}
+  <title>ECS 153</title>
+  {% endif %}
+
+</head>
+<body class="main-body">
+  <!-- FIXME: stick a navbar here -->
+  <main role="main" class="container" style = "min-height: calc(100vh - 120px);">
+    <div class="row">
+      <div class="col-md">
+        {% block content %}
+        {% endblock %}
+      </div>
+    </div>
+    <!-- Main content End -->
+  </main>
+</body>
+<!-- Footer Begin-->
+<!-- Footer End-->
+</html>
