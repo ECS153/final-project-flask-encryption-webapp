@@ -27,6 +27,6 @@
 * This Week: Write database wrapper for Firebase API as well as set up users, messages, and authentication tables accordingly.
 * Blocked: None
 #### Sam
-* Last Week:
-* This Week:
+* Last Week: Catching up with everyone on learning how to use Flask
+* This Week: Researching encryption libraries and methods.
 * Blocked: None
