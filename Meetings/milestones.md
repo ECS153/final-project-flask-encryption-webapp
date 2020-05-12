@@ -1,7 +1,7 @@
 # Milestone 1
 
 ### Video Link
-* [unlisted Youtube link]()
+* [unlisted Youtube link](https://youtu.be/rFfZddmc-qc)
 
 ### Meeting Notes
 * Reviewing project file structure
