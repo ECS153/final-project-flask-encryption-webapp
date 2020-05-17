@@ -3,7 +3,7 @@
 {% block content %}
 
 <section class="text-center">
-  <form action="{{ url_for('login') }}" method="POST" role="form">
+  <form action="{{ url_for('signup') }}" method="POST" role="form">
     <div class="container-fluid">
       <div class="row text-center justify-content-center mt-5">
         <div class="col"></div>
@@ -11,19 +11,20 @@
           <div class="box">
             <h3 class="h3 mb-3 font-weight-bold">Join the most secure chat on the web</h3>
             <div class="form-group">
+              <input type="name" name="name" id="name" class="form-control mb-3 " placeholder="John Smith"
+                required>
               <input type="email" name="email" id="loginEmail" class="form-control mb-3 " placeholder="Email Address"
                 required>
               <input type="password" name="password" id="loginPassword" class="form-control" placeholder="Password"
                 required>
             </div>
-            <small id="emailHelp" class="form-text text-muted">Don't have an account? <a
-                href="{{url_for('signup')}}">Sign up!</a></small>
+            <small id="emailHelp" class="form-text text-muted">Already have an account? <a href="{{url_for('login')}}">Log in!</a></small>
             <small id="emailHelp" class="form-text text-muted">We will never share your password with anyone.</small>
             <small id="errorMessage" class="form-text text-muted">
               <p style="color: red">{{ errorMessage }}</p>
             </small>
             <div class="modal-footer text-center justify-content-center">
-              <button type="submit" class="btn btn-success btn">Login</button>
+              <button type="submit" class="btn btn-success btn">Sign Up!</button>
             </div>
           </div>
         </div>
