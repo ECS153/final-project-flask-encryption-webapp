@@ -13,7 +13,7 @@
       <button type="button" class="btn btn-primary">Compose</button>
     </div>
     <div class="col-1">
-      <button type="button" class="btn btn-danger">Logout</button>
+        <a href="{{ url_for('logout') }}"><button type="submit" class="btn btn-danger">Logout</button></a>
     </div>
     <div class="col-1"></div>
   </div>
@@ -41,6 +41,7 @@
 
     <div class="col-8 messageContents">
       <h3 id="placeholder">Select a message to get started</h3>
+      <p style="color: red">{{ errorMessage }}</p>
       {% for msgId, msgObj in messages.items() %}
         <div id={{msgId}} class="message" style="display: none;">
           <!-- Messages will be aligned left if from other user, right if from currentUser -->
