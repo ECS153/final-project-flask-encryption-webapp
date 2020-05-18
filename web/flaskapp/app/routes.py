@@ -10,7 +10,14 @@ import app.auth as auth
 def login():
   if request.method == "GET":
     if 'userId' in session:
-      print("You are actually logged in")
+
+      databaseWrapper = db.Database()
+      # .strftime("%m/%d/%Y, %H:%M:%S")
+      # databaseWrapper.createMessage('nastern2@ucdavis.edu', 'nastern@ucdavis.edu', 'Hello, world!')
+      # databaseWrapper.replyToMessage('7hEWOxuSxWNFTxFlI60E','nastern2@ucdavis.edu', 'Hey, world!')
+      # print(databaseWrapper.getInbox('nastern@ucdavis.edu'))
+
+      return '<p>You are logged in.</p>'
       # return redirect(url_for('login')) # FIXME: CHANGE TO INBOX
     else:
       return render_template('index.html', title="Login/Sign Up!")
