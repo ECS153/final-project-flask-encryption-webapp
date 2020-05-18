@@ -26,7 +26,7 @@ class Auth:
 
   def loginUser(self, email, password):
     """ Logs a user in with a given username and password. Returns the response object. """
-    response = {"success": False, "message": None, "userId": None, "idToken": None, "refreshToken": None}
+    response = {"success": False, "message": None, "userId": None, "idToken": None, "refreshToken": None, "email": None}
 
     try:
       user = self.auth.sign_in_with_email_and_password(email, password)
@@ -40,6 +40,7 @@ class Auth:
       response['userId'] = userId
       response['idToken'] = idToken
       response['refreshToken'] = refreshToken
+      response['email'] = email
     except:
       response["message"] = "Failed to authenticate. Either username or password is incorrect."
     return response

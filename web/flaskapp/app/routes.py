@@ -57,6 +57,7 @@ def login():
         session['userId'] = response['userId']
         session['idToken'] = response['idToken']
         session['refreshToken'] = response['refreshToken']
+        session['email'] = response['email']
 
         return redirect(url_for('inbox'))
       else:
@@ -82,7 +83,6 @@ def signup():
       databaseWrapper.createUser(user=user)
 
       session['userId'] = user.uid
-      session['name'] = user.display_name
       session['email'] = user.email
 
       return redirect(url_for('inbox'))
