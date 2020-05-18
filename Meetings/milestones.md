@@ -10,14 +10,17 @@
 * Upcoming steps for chat app + integrating encryption
 
 ### Action Items
-*
+* Function wrappers for generating account key pairs
+* Incorporate local storage for private keys, database storage for public keys
+* Encrypting messages before sending to database. Decrypting after receiving
+* Design docs for database/authentication and messaging/data flow
 
 ### Contributions
 * [Latest Commit](https://github.com/ECS153/final-project-flask-encryption-webapp/commit/d5498811d9fbf7b1d5d99cf9248bdb9fc5c5f1c9)
 
 #### Karmit
 * Last Week: Chat app functionality (unencrypted), integrating with database, initial chat UI.
-* This Week: Integrating encryption into chat, design doc for messaging system and data flow.
+* This Week: Integrating encryption into chat, local storage, design doc for messaging system and data flow.
 * Blocked: None
 
 #### Noah
