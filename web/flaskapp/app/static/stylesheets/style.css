@@ -1,0 +1,29 @@
+.Blurb {
+  background: #ffffff;
+}
+
+.Blurb:hover {
+  background: #f5f5f5;
+}
+
+.Blurb p {
+  color: gray;
+}
+
+.messageBox {
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.messageBox h5 {
+  font-size: 0.85em;
+}
+
+.messageBox h6 {
+  font-size: 0.75em;
+}
+
+.messageBox hr {
+  margin-top: 12px;
+  margin-bottom: 6px;
+}
