@@ -10,14 +10,13 @@ import app.auth as auth
 def inbox():
   databaseWrapper = db.Database()
   if request.method == "GET":
-    (messages, conversations) = databaseWrapper.getInbox('nastern@ucdavis.edu')
+    (messages, conversations) = databaseWrapper.getInbox(session['email'])
     return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages)
   elif request.method == "POST":
-    print(request.form)
+    databaseWrapper.replyToMessage(request.form.get('msgId'), session['email'], request.form.get('message'))
 
-    (messages, conversations) = databaseWrapper.getInbox('nastern@ucdavis.edu')
+    (messages, conversations) = databaseWrapper.getInbox(session['email'])
     return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages)
-    return {}
   
 
 # LOGIN AND SIGN UP
