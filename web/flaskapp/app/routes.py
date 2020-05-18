@@ -18,27 +18,23 @@ def inbox():
 def login():
   if request.method == "GET":
     if 'userId' in session:
-      # databaseWrapper = db.Database()
-      # .strftime("%m/%d/%Y, %H:%M:%S")
-      # databaseWrapper.createMessage('nastern2@ucdavis.edu', 'nastern@ucdavis.edu', 'Hello, world!')
-      # databaseWrapper.replyToMessage('7hEWOxuSxWNFTxFlI60E','nastern2@ucdavis.edu', 'Hey, world!')
-      # print(databaseWrapper.getInbox('nastern@ucdavis.edu'))
-
       return redirect(url_for('inbox'))
     else:
       return render_template('index.html', title="Login/Sign Up!")
 
   if request.method == "POST":
+      authWrapper = auth.Auth()
+
       email = request.form.get("email")
       password = request.form.get("password")
-      response = auth.loginUser(email, password)
+      response = authWrapper.loginUser(email, password)
 
       if response['userId'] and response['idToken']:
         session['userId'] = response['userId']
         session['idToken'] = response['idToken']
         session['refreshToken'] = response['refreshToken']
 
-        return redirect(url_for('login')) # FIXME: CHANGE TO INBOX
+        return redirect(url_for('inbox'))
       else:
         errorMessage = "Either your username or password is incorrect! Please try again"
         return render_template('login.html', errorMessage=errorMessage)
