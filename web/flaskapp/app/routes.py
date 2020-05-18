@@ -23,8 +23,8 @@ def LoginRequired(f):
       return redirect(url_for('login'))
   return wrapper
 
-@LoginRequired
 @app.route("/inbox", methods=['GET', 'POST'])
+@LoginRequired
 def inbox():
   databaseWrapper = db.Database()
   if request.method == "GET":
