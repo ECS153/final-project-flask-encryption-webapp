@@ -2,6 +2,16 @@
   margin-top: 12px;
 }
 
+.conversations {
+  max-height: 90vh;
+  overflow:auto;
+}
+
+.messageContents {
+  max-height: 90vh;
+  overflow: auto;
+}
+
 .Blurb {
   background: #ffffff;
 }
