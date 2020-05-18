@@ -59,7 +59,7 @@ def login():
         return redirect(url_for('inbox'))
       else:
         errorMessage = "Either your username or password is incorrect! Please try again"
-        return render_template('login.html', errorMessage=errorMessage)
+        return render_template('index.html', errorMessage=errorMessage)
 
 
 @app.route("/signup", methods=['GET', 'POST'])
