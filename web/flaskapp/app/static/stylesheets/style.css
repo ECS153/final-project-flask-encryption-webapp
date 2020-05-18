@@ -1,3 +1,7 @@
+.topBar {
+  margin-top: 12px;
+}
+
 .Blurb {
   background: #ffffff;
 }
@@ -27,4 +31,8 @@
 .messageBox hr {
   margin-top: 12px;
   margin-bottom: 6px;
+}
+
+.messageInput {
+  margin-bottom: 16px;
 }

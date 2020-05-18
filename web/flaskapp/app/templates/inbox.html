@@ -2,15 +2,17 @@
 
 {% block content %}
 
+{% set currentUser = session["email"] %}
+
 <script src="{{url_for('static', filename='scripts/displayMessage.js')}}" type="text/javascript"></script>
 
-<div class="container">
+<div class="container topBar">
   <div class="row">
     <div class="col-9">
       <h1>Inbox</h1>
     </div>
     <div class="col-1">
-      <button type="button" class="btn btn-primary">Compose</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#composeModal">Compose</button>
     </div>
     <div class="col-1">
         <a href="{{ url_for('logout') }}"><button type="submit" class="btn btn-danger">Logout</button></a>
@@ -19,7 +21,33 @@
   </div>
 </div>
 
-{% set currentUser = session["email"] %}
+<div class="modal fade" id="composeModal" tabindex="-1" role="dialog" aria-labelledby="composeModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="composeModalLabel">Compose Message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form action="{{ url_for('inbox') }}" enctype="multipart/form-data" method="POST">
+          <input type="hidden" id="formType" name="formType" value="newMessage">
+          <div class="container" style="text-align: center">
+            <input name="to" class="form-control" id="to" placeholder="Email of Recipient" required></input>
+            <input name="message" class="form-control" id="message" placeholder="Message Contents" required></input>
+            <button type="submit" class="btn btn-primary">Send</button>
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container">
   <div class="row">
@@ -73,7 +101,8 @@
             <br>
           {% endfor %}
 
-          <form action="{{ url_for('inbox') }}" enctype="multipart/form-data" method="POST">
+          <form class="messageInput" action="{{ url_for('inbox') }}" enctype="multipart/form-data" method="POST">
+            <input type="hidden" id="formType" name="formType" value="reply">
             <input type="hidden" id="msgId" name="msgId" value="{{msgId}}">
             <div class="container">
               <div class="row">

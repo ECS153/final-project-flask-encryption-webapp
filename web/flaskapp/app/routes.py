@@ -23,9 +23,14 @@ def inbox():
     (messages, conversations) = databaseWrapper.getInbox(session['email'])
     return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages)
   elif request.method == "POST":
-    databaseWrapper.replyToMessage(request.form.get('msgId'), session['email'], request.form.get('message'))
-
-    (messages, conversations) = databaseWrapper.getInbox(session['email'])
+    if request.form.get('formType') == "reply":
+      databaseWrapper.replyToMessage(request.form.get('msgId'), session['email'], request.form.get('message'))
+  
+      (messages, conversations) = databaseWrapper.getInbox(session['email'])
+    elif request.form.get('formType') == "newMessage":
+      databaseWrapper.createMessage(request.form.get('to'), session['email'], request.form.get('message'))
+      
+      (messages, conversations) = databaseWrapper.getInbox(session['email'])
     return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages)
 
 
