@@ -9,9 +9,16 @@ import app.auth as auth
 @app.route("/inbox", methods=['GET', 'POST'])
 def inbox():
   databaseWrapper = db.Database()
-  (messages, conversations) = databaseWrapper.getInbox('nastern@ucdavis.edu')
+  if request.method == "GET":
+    (messages, conversations) = databaseWrapper.getInbox('nastern@ucdavis.edu')
+    return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages)
+  elif request.method == "POST":
+    print(request.form)
 
-  return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages)
+    (messages, conversations) = databaseWrapper.getInbox('nastern@ucdavis.edu')
+    return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages)
+    return {}
+  
 
 # LOGIN AND SIGN UP
 @app.route("/", methods=['GET', 'POST'])

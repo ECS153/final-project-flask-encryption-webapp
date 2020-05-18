@@ -15,7 +15,7 @@
   <div class="row">
     <div class="col-4">
       <div class="container conversations">
-        {% for msgId in conversations %}
+        {% for (time, msgId) in conversations %}
           <div class="Blurb" onclick="DisplayMessage('{{msgId}}')">
             {% if currentUser == messages[msgId]["participants"][0] %}
               <h5>{{messages[msgId]["participants"][1]}}</h5>
