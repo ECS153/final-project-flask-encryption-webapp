@@ -14,7 +14,7 @@
     <div class="col-1">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#composeModal">Compose</button>
     </div>
-    <div class="col-1">
+    <div class="col-1 ml-1">
         <a href="{{ url_for('logout') }}"><button type="submit" class="btn btn-danger">Logout</button></a>
     </div>
     <div class="col-1"></div>
@@ -35,8 +35,8 @@
         <form action="{{ url_for('inbox') }}" enctype="multipart/form-data" method="POST">
           <input type="hidden" id="formType" name="formType" value="newMessage">
           <div class="container" style="text-align: center">
-            <input name="to" class="form-control" id="to" placeholder="Email of Recipient" required></input>
-            <input name="message" class="form-control" id="message" placeholder="Message Contents" required></input>
+            <input name="to" class="form-control mb-1" id="to" placeholder="Email of Recipient" required></input>
+            <input name="message" class="form-control mb-1" id="message" placeholder="Message Contents" required></input>
             <button type="submit" class="btn btn-primary">Send</button>
           </div>
         </form>

@@ -57,7 +57,7 @@ class Database:
       'messages': firestore.ArrayUnion([messageId])
     })
 
-    return None
+    return ""
 
   def replyToMessage(self, messageId, sender, messageText):
     db = firestore.client()
