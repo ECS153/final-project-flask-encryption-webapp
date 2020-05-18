@@ -5,20 +5,26 @@ from flask import render_template, request, session, redirect, url_for, session
 import app.database as db
 import app.auth as auth
 
+# @LoginRequired  # FIXME: uncomment
+@app.route("/inbox", methods=['GET', 'POST'])
+def inbox():
+  databaseWrapper = db.Database()
+  (messages, conversations) = databaseWrapper.getInbox('nastern@ucdavis.edu')
+
+  return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages)
+
 # LOGIN AND SIGN UP
 @app.route("/", methods=['GET', 'POST'])
 def login():
   if request.method == "GET":
     if 'userId' in session:
-
-      databaseWrapper = db.Database()
+      # databaseWrapper = db.Database()
       # .strftime("%m/%d/%Y, %H:%M:%S")
       # databaseWrapper.createMessage('nastern2@ucdavis.edu', 'nastern@ucdavis.edu', 'Hello, world!')
       # databaseWrapper.replyToMessage('7hEWOxuSxWNFTxFlI60E','nastern2@ucdavis.edu', 'Hey, world!')
       # print(databaseWrapper.getInbox('nastern@ucdavis.edu'))
 
-      return '<p>You are logged in.</p>'
-      # return redirect(url_for('login')) # FIXME: CHANGE TO INBOX
+      return redirect(url_for('inbox'))
     else:
       return render_template('index.html', title="Login/Sign Up!")
 
@@ -59,7 +65,7 @@ def signup():
       session['name'] = user.display_name
       session['email'] = user.email
 
-      return redirect(url_for('login')) # FIXME: CHANGE TO INBOX
+      return redirect(url_for('inbox'))
     except requests.exceptions.HTTPError as err:
       errorDict = ast.literal_eval(err.strerror)
       errorMessage = errorDict["error"]["message"]

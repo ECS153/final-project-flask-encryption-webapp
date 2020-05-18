@@ -78,12 +78,20 @@ class Database:
     messages = user.get().to_dict()['messages']
 
     allMessages = {}
+    conversations = []
 
     for messageId in messages:
       db = firestore.client()
       message = db.collection('messages').document(messageId)
       allMessages[messageId] = message.get().to_dict()
+      conversations.append((allMessages[messageId]['messages'][-1]['timestamp'], messageId)) # Gets the most recent messages timestamp
 
-    return allMessages
+
+    def getKey(item):
+      return item[0].timestamp()
+
+    conversations = sorted(conversations, key=getKey, reverse=True)
+
+    return allMessages, conversations
 
 

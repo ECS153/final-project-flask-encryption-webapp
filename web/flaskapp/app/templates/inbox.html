@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<script src="{{url_for('static', filename='scripts/displayMessage.js')}}" type="text/javascript"></script>
+
+<div class="container">
+  <h1>Inbox</h1>
+</div>
+
+{# set currentUser = session["email"] #}
+{% set currentUser = "userID1" %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <div class="container conversations">
+        {% for msgId in conversations %}
+          <div class="Blurb" onclick="DisplayMessage('{{msgId}}')">
+            {% if currentUser == messages[msgId]["participants"][0] %}
+              <h5>{{messages[msgId]["participants"][1]}}</h5>
+            {% else %}
+              <h5>{{messages[msgId]["participants"][0]}}</h5>
+            {% endif %}
+            <p>{{messages[msgId]["messages"][-1]["timestamp"]}}</p>
+          </div>
+          <hr>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-8 messageContents">
+      <h3 id="placeholder">Select a message to get started</h3>
+      {% for msgId, msgObj in messages.items() %}
+        <div id={{msgId}} class="message" style="display: none;">
+          <!-- Messages will be aligned left if from other user, right if from currentUser -->
+          {% for msg in msgObj["messages"] %}
+            {% if msg["sender"] != currentUser %}
+              {% set leftBuffer = 1 %}
+              {% set rightBuffer = 3 %}
+              {% set alignment = "left" %}
+              {% set backgroundColor = "#E6E5EA" %}
+              {% set textColor = "black" %}
+            {% else %}
+              {% set leftBuffer = 3 %}
+              {% set rightBuffer = 1 %}
+              {% set alignment = "right" %}
+              {% set backgroundColor = "#1086FC" %}
+              {% set textColor = "white" %}
+            {% endif %}
+            <div class="row">
+              <div class="col-{{leftBuffer}}"></div>
+              <div class="col-8 messageBox" style="text-align: {{alignment}}; background-color: {{backgroundColor}}; color: {{textColor}}">
+                <!-- message contents -->
+                <p>{{msg["messageContents"]}}</p>
+                <hr>
+                <h5>{{msg["sender"]}}</h5>
+                <h6>{{msg["timestamp"]}}</h6>
+              </div>
+              <div class="col-{{rightBuffer}}"></div>
+            </div>
+            <br>
+          {% endfor %}
+          <!-- html form to send message, have it auto-focused + enter sends message -->
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
