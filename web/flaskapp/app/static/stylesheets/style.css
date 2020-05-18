@@ -12,6 +12,10 @@
   overflow: auto;
 }
 
+.errorMessage {
+  color: red;
+}
+
 .Blurb {
   background: #ffffff;
 }

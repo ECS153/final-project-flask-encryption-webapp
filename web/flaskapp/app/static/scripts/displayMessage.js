@@ -7,5 +7,6 @@ function DisplayMessage(msgId)
   currentlyDisplayedMessage = msgId;
   window.scrollTo(0,document.body.scrollHeight);
   document.getElementById("input_" + msgId).focus();
+  document.getElementById("errorMessage").innerText = "";
   return;
 }
