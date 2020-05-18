@@ -1,11 +1,29 @@
 from app import app
 import requests
 import firebase_admin
+from functools import wraps
 from flask import render_template, request, session, redirect, url_for, session
 import app.database as db
 import app.auth as auth
 
-# @LoginRequired  # FIXME: uncomment
+def LoginRequired(f):
+  @wraps(f)
+  def wrapper(*args, **kwargs):
+    if 'userId' in session:
+      # try:
+      #   # we will always refresh token regardless, because it reduces chance of stale token if user stays on page for > 1 hour and doesn't cost us anything in the quotq (i think)
+      #   # user = auth.refreshUser(session['refreshToken'])
+      #   # session['idToken'] = user['idToken']
+      #   # session['refreshToken'] = user['refreshToken']
+      # except:
+      #   # if refresh token isn't working, i.e. user acct deleted, disabled, or major account info changed
+      #   return redirect(url_for('logout'))
+      return f(*args, **kwargs)
+    else:
+      return redirect(url_for('login'))
+  return wrapper
+
+@LoginRequired
 @app.route("/inbox", methods=['GET', 'POST'])
 def inbox():
   databaseWrapper = db.Database()
@@ -18,7 +36,7 @@ def inbox():
     (messages, conversations) = databaseWrapper.getInbox('nastern@ucdavis.edu')
     return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages)
     return {}
-  
+
 
 # LOGIN AND SIGN UP
 @app.route("/", methods=['GET', 'POST'])
