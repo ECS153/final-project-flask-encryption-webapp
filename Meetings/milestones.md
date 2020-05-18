@@ -10,10 +10,10 @@
 * Upcoming steps for chat app + integrating encryption
 
 ### Action Items
-* 
+*
 
 ### Contributions
-* [Latest Commit]()
+* [Latest Commit](https://github.com/ECS153/final-project-flask-encryption-webapp/commit/d5498811d9fbf7b1d5d99cf9248bdb9fc5c5f1c9)
 
 #### Karmit
 * Last Week: Chat app functionality (unencrypted), integrating with database, initial chat UI.
@@ -21,9 +21,9 @@
 * Blocked: None
 
 #### Noah
-* Last Week:
-* This Week:
-* Blocked:
+* Last Week: Finished the database wrapper + authentication. Created the log in and sign up flow and create entries in the database for each user that logs in.
+* This Week: Integrating encryption into messages, database/authentication design doc, and create network logging to monitor messages/prove encryption works
+* Blocked: None
 
 #### Sam:
 * Last Week:
