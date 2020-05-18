@@ -23,6 +23,13 @@ class Database:
   def createMessage(self, to, sender, messageText):
     """ Creates a message from to to sender containing the message """
     db = firestore.client()
+    user = db.collection('users').document(to)
+
+    if user.get().to_dict() is None:
+      return "That user does not exists"
+
+
+    db = firestore.client()
     message = {
       'participants': [to, sender],
       'messages': [
@@ -40,10 +47,6 @@ class Database:
 
     db = firestore.client()
     user = db.collection('users').document(to)
-
-    if user.get().to_dict() is None:
-      # the userID for to does not exist
-      return
     user.update({
       'messages': firestore.ArrayUnion([messageId])
     })
@@ -54,7 +57,7 @@ class Database:
       'messages': firestore.ArrayUnion([messageId])
     })
 
-    return
+    return ""
 
   def replyToMessage(self, messageId, sender, messageText):
     db = firestore.client()
