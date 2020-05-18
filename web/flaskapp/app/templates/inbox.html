@@ -60,7 +60,7 @@
             {% else %}
               <h5>{{messages[msgId]["participants"][0]}}</h5>
             {% endif %}
-            <p>{{messages[msgId]["messages"][-1]["timestamp"]}}</p>
+            <p>{{messages[msgId]["messages"][-1]["timestamp"].strftime('%m/%d/%Y, %I:%M %p') }}</p>
           </div>
           <hr>
         {% endfor %}
@@ -94,7 +94,7 @@
                 <p>{{msg["messageContents"]}}</p>
                 <hr>
                 <h5>{{msg["sender"]}}</h5>
-                <h6>{{msg["timestamp"]}}</h6>
+                <h6>{{msg["timestamp"].strftime('%m/%d/%Y, %I:%M %p')}}</h6>
               </div>
               <div class="col-{{rightBuffer}}"></div>
             </div>
