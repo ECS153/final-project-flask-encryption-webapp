@@ -29,9 +29,9 @@
 * Blocked: None
 
 #### Sam:
-* Last Week:
-* This Week:
-* Blocked:
+* Last Week: Researching libraries and deciding cryptography system to use along with where to store keys.
+* This Week: Working on wrapper function for generating keys to be used by the other developer.
+* Blocked: none
 
 ---
 
