@@ -19,20 +19,22 @@ def LoginRequired(f):
 @LoginRequired
 def inbox():
   databaseWrapper = db.Database()
-  errorMessage = ""
+  errorMessage = request.args.get('errorMessage')
+
+  if errorMessage == None:
+    errorMessage = ""
+
   if request.method == "GET":
     (messages, conversations) = databaseWrapper.getInbox(session['email'])
-    return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages)
+    return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages, errorMessage=errorMessage)
   elif request.method == "POST":
     if request.form.get('formType') == "reply":
       databaseWrapper.replyToMessage(request.form.get('msgId'), session['email'], request.form.get('message'))
-
       (messages, conversations) = databaseWrapper.getInbox(session['email'])
     elif request.form.get('formType') == "newMessage":
       errorMessage = databaseWrapper.createMessage(request.form.get('to'), session['email'], request.form.get('message'))
-
       (messages, conversations) = databaseWrapper.getInbox(session['email'])
-    return redirect(url_for('inbox'))
+    return redirect(url_for('inbox', errorMessage=errorMessage))
 
 # LOGIN AND SIGN UP
 @app.route("/", methods=['GET', 'POST'])
