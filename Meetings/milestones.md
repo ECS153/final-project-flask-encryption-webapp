@@ -1,3 +1,37 @@
+# Milestone 2
+
+### Video Link
+* [put the video link here](https://www.youtube.com)
+
+### Meeting Notes
+* Reviewing Firebase + database schemas
+* Reviewing current progress on chat app functionality
+* Discussion of encryption method and process
+* Upcoming steps for chat app + integrating encryption
+
+### Action Items
+* 
+
+### Contributions
+* [Latest Commit]()
+
+#### Karmit
+* Last Week:
+* This Week:
+* Blocked:
+
+#### Noah
+* Last Week:
+* This Week:
+* Blocked:
+
+#### Sam:
+* Last Week:
+* This Week:
+* Blocked:
+
+---
+
 # Milestone 1
 
 ### Video Link
