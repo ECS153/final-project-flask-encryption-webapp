@@ -32,8 +32,7 @@ def inbox():
       errorMessage = databaseWrapper.createMessage(request.form.get('to'), session['email'], request.form.get('message'))
 
       (messages, conversations) = databaseWrapper.getInbox(session['email'])
-    return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages, errorMessage=errorMessage)
-
+    return redirect(url_for('inbox'))
 
 # LOGIN AND SIGN UP
 @app.route("/", methods=['GET', 'POST'])
