@@ -16,9 +16,9 @@
 * [Latest Commit]()
 
 #### Karmit
-* Last Week:
-* This Week:
-* Blocked:
+* Last Week: Chat app functionality (unencrypted), integrating with database, initial chat UI.
+* This Week: Integrating encryption into chat, design doc for messaging system and data flow.
+* Blocked: None
 
 #### Noah
 * Last Week:
