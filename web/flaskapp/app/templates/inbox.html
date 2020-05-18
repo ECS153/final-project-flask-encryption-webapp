@@ -28,6 +28,7 @@
         {% endfor %}
       </div>
     </div>
+
     <div class="col-8 messageContents">
       <h3 id="placeholder">Select a message to get started</h3>
       {% for msgId, msgObj in messages.items() %}
@@ -60,7 +61,22 @@
             </div>
             <br>
           {% endfor %}
-          <!-- html form to send message, have it auto-focused + enter sends message -->
+
+          <form action="{{ url_for('inbox') }}" enctype="multipart/form-data" method="POST">
+            <input type="hidden" id="msgId" name="msgId" value="{{msgId}}">
+            <div class="container">
+              <div class="row">
+                <div class="col-10">
+                  <input name="message" class="form-control" id="input_{{msgId}}" placeholder="Message" required></input>
+                </div>
+                <div class="col-1">
+                  <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+                <div class="col-1"></div>
+              </div>
+            </div>
+          </form>
+
         </div>
       {% endfor %}
     </div>
