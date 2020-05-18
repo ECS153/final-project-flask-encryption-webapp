@@ -6,5 +6,6 @@ function DisplayMessage(msgId)
   document.getElementById(msgId).style.display='inline';
   currentlyDisplayedMessage = msgId;
   window.scrollTo(0,document.body.scrollHeight);
+  document.getElementById("input_" + msgId).focus();
   return;
 }
