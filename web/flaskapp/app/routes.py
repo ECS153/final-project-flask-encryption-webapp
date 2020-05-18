@@ -10,14 +10,6 @@ def LoginRequired(f):
   @wraps(f)
   def wrapper(*args, **kwargs):
     if 'userId' in session:
-      # try:
-      #   # we will always refresh token regardless, because it reduces chance of stale token if user stays on page for > 1 hour and doesn't cost us anything in the quotq (i think)
-      #   # user = auth.refreshUser(session['refreshToken'])
-      #   # session['idToken'] = user['idToken']
-      #   # session['refreshToken'] = user['refreshToken']
-      # except:
-      #   # if refresh token isn't working, i.e. user acct deleted, disabled, or major account info changed
-      #   return redirect(url_for('logout'))
       return f(*args, **kwargs)
     else:
       return redirect(url_for('login'))
@@ -55,8 +47,6 @@ def login():
 
       if response['userId'] and response['idToken']:
         session['userId'] = response['userId']
-        session['idToken'] = response['idToken']
-        session['refreshToken'] = response['refreshToken']
         session['email'] = response['email']
 
         return redirect(url_for('inbox'))
@@ -94,3 +84,9 @@ def signup():
     except firebase_admin._auth_utils.EmailAlreadyExistsError as err:
       errorMessage = err
   return render_template('signup.html', errorMessage=errorMessage)
+
+@app.route("/logout", methods=['GET', 'POST'])
+@LoginRequired
+def logout():
+  session.clear()
+  return redirect(url_for('login'))
