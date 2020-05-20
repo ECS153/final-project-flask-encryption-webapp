@@ -1,7 +1,7 @@
 # Milestone 2
 
 ### Video Link
-* [put the video link here](https://www.youtube.com)
+* [Milestone 2 video](https://youtu.be/2h5dWP1_BaE)
 
 ### Meeting Notes
 * Reviewing Firebase + database schemas
