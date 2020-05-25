@@ -31,10 +31,18 @@ def inbox():
     return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages, errorMessage=errorMessage)
   elif request.method == "POST":
     if request.form.get('formType') == "reply":
-      databaseWrapper.ReplyToMessage(request.form.get('msgId'), session['email'], request.form.get('message'))
+      plaintextMessage = request.form.get('message')
+      publicKey = databaseWrapper.GetPublicKeyForUser(request.form.get('to'))
+      ciphertext = encrypt.Encrypt(publicKey, plaintextMessage)
+
+      databaseWrapper.ReplyToMessage(request.form.get('msgId'), session['email'], ciphertext)
       (messages, conversations) = databaseWrapper.GetInbox(session['email'])
     elif request.form.get('formType') == "newMessage":
-      errorMessage = databaseWrapper.CreateMessage(request.form.get('to'), session['email'], request.form.get('message'))
+      plaintextMessage = request.form.get('message')
+      publicKey = databaseWrapper.GetPublicKeyForUser(request.form.get('to'))
+      ciphertext = encrypt.Encrypt(publicKey, plaintextMessage)
+
+      errorMessage = databaseWrapper.CreateMessage(request.form.get('to'), session['email'], ciphertext)
       (messages, conversations) = databaseWrapper.GetInbox(session['email'])
     return redirect(url_for('inbox', errorMessage=errorMessage))
 

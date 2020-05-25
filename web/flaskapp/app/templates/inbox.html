@@ -104,6 +104,11 @@
           <form class="messageInput" action="{{ url_for('inbox') }}" enctype="multipart/form-data" method="POST">
             <input type="hidden" id="formType" name="formType" value="reply">
             <input type="hidden" id="msgId" name="msgId" value="{{msgId}}">
+            {% if currentUser == messages[msgId]["participants"][0] %}
+              <input type="hidden" id="to" name="to" value="{{messages[msgId]['participants'][1]}}">
+            {% else %}
+              <input type="hidden" id="to" name="to" value="{{messages[msgId]['participants'][0]}}">
+            {% endif %}
             <div class="container">
               <div class="row">
                 <div class="col-10">
