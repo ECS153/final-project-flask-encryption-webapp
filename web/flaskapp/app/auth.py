@@ -38,7 +38,7 @@ class Auth:
       refreshToken = user['refreshToken']
 
       databaseWrapper = db.Database()
-      print(databaseWrapper.GetPublicKeyForUser(userId))
+      publicKey = databaseWrapper.GetPublicKeyForUser(email)
 
       response["success"] = True
       response["message"] = "Successfully authenticated."
@@ -50,5 +50,5 @@ class Auth:
     except:
       response["message"] = "Failed to authenticate. Either username or password is incorrect."
 
-    # print(response)
+    print(response)
     return response

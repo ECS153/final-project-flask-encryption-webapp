@@ -102,8 +102,8 @@ class Database:
 
     return allMessages, conversations
 
-  def GetPublicKeyForUser(self, userId):
+  def GetPublicKeyForUser(self, email):
     db = firestore.client()
-    key = db.collection('users').document(userId)
-    publicKey = key.get().to_dict()
+    key = db.collection('users').document(email)
+    publicKey = key.get().to_dict()['publicKey']
     return publicKey
