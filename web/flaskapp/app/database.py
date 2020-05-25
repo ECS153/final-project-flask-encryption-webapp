@@ -96,7 +96,7 @@ class Database:
 
     return
 
-  def GetInbox(self, userId):
+  def GetInbox(self, userId, privateKey):
     db = firestore.client()
     user = db.collection('users').document(userId)
     messages = user.get().to_dict()['messages']
@@ -115,6 +115,10 @@ class Database:
       return item[0]
 
     conversations = sorted(conversations, key=GetKey, reverse=True)
+
+    for msgId, msgObj in allMessages.items():
+      for messageArray in msgObj["messages"]:
+        messageArray["messageContents"] = encrypt.Decrypt(privateKey, messageArray["messageContents"])
 
     return allMessages, conversations
 

@@ -57,5 +57,4 @@ class Auth:
     except:
       response["message"] = "Failed to authenticate. Either username or password is incorrect."
 
-    print(response)
     return response
