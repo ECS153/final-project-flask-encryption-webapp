@@ -10,14 +10,8 @@ class Database:
   cred = credentials.Certificate('./app/config/serviceAccountKey.json')
   default_app = firebase_admin.initialize_app(cred)
 
-<<<<<<< HEAD
-  def createUser(self, user):
-    """ Creates a new user in the 'users' table in firestore. User is a firebase admin user object. Returns the new users public key """
-    public, private = encrypt.GenerateKeyPair(seed=None)
-=======
   def CreateUser(self, user):
     """ Creates a new user in the 'users' table in firestore. User is a firebase admin user object. """
->>>>>>> a94bf2243cecdfea50634a3b27bf7f2bb5977dd5
     db = firestore.client()
     doc_ref = db.collection('users').document(user.email)
     doc_ref.set({
