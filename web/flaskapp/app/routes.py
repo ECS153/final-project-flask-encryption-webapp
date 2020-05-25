@@ -58,6 +58,7 @@ def login():
         session['userId'] = response['userId']
         session['email'] = response['email']
         session['publicKey'] = response['publicKey']
+        session['privateKey'] = response['privateKey']
 
         return redirect(url_for('inbox'))
       else:
@@ -80,11 +81,13 @@ def signup():
     try:
       authWrapper.CreateUser(name, email, password)
       user = firebase_admin.auth.get_user_by_email(email)
-      publicKey = databaseWrapper.CreateUser(user=user)
+      publicKey, privateKey = databaseWrapper.CreateUser(user=user)
 
       session['userId'] = user.uid
       session['email'] = user.email
       session['publicKey'] = publicKey
+      session['privateKey'] = privateKey
+
 
       return redirect(url_for('inbox'))
     except requests.exceptions.HTTPError as err:
@@ -93,6 +96,8 @@ def signup():
     except ValueError as err:
       errorMessage=err
     except firebase_admin._auth_utils.EmailAlreadyExistsError as err:
+      errorMessage = err
+    except firebase_admin.exceptions.InvalidArgumentError as err:
       errorMessage = err
   return render_template('signup.html', errorMessage=errorMessage)
 
