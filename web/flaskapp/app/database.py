@@ -9,7 +9,7 @@ class Database:
   cred = credentials.Certificate('./app/config/serviceAccountKey.json')
   default_app = firebase_admin.initialize_app(cred)
 
-  def createUser(self, user):
+  def CreateUser(self, user):
     """ Creates a new user in the 'users' table in firestore. User is a firebase admin user object. """
     db = firestore.client()
     doc_ref = db.collection('users').document(user.email)
@@ -20,7 +20,7 @@ class Database:
       'messages': []
     })
 
-  def createMessage(self, to, sender, messageText):
+  def CreateMessage(self, to, sender, messageText):
     """ Creates a message from to to sender containing the message """
     db = firestore.client()
     user = db.collection('users').document(to)
@@ -59,7 +59,7 @@ class Database:
 
     return ""
 
-  def replyToMessage(self, messageId, sender, messageText):
+  def ReplyToMessage(self, messageId, sender, messageText):
     db = firestore.client()
     message = db.collection('messages').document(messageId)
 
@@ -75,7 +75,7 @@ class Database:
 
     return
 
-  def getInbox(self, userId):
+  def GetInbox(self, userId):
     db = firestore.client()
     user = db.collection('users').document(userId)
     messages = user.get().to_dict()['messages']
@@ -90,9 +90,9 @@ class Database:
       conversations.append((allMessages[messageId]['messages'][-1]['timestamp'].timestamp(), messageId)) # Gets the most recent messages timestamp
 
 
-    def getKey(item):
+    def GetKey(item):
       return item[0]
 
-    conversations = sorted(conversations, key=getKey, reverse=True)
+    conversations = sorted(conversations, key=GetKey, reverse=True)
 
     return allMessages, conversations

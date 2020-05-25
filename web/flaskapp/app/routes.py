@@ -27,15 +27,15 @@ def inbox():
     errorMessage = ""
 
   if request.method == "GET":
-    (messages, conversations) = databaseWrapper.getInbox(session['email'])
+    (messages, conversations) = databaseWrapper.GetInbox(session['email'])
     return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages, errorMessage=errorMessage)
   elif request.method == "POST":
     if request.form.get('formType') == "reply":
-      databaseWrapper.replyToMessage(request.form.get('msgId'), session['email'], request.form.get('message'))
-      (messages, conversations) = databaseWrapper.getInbox(session['email'])
+      databaseWrapper.ReplyToMessage(request.form.get('msgId'), session['email'], request.form.get('message'))
+      (messages, conversations) = databaseWrapper.GetInbox(session['email'])
     elif request.form.get('formType') == "newMessage":
-      errorMessage = databaseWrapper.createMessage(request.form.get('to'), session['email'], request.form.get('message'))
-      (messages, conversations) = databaseWrapper.getInbox(session['email'])
+      errorMessage = databaseWrapper.CreateMessage(request.form.get('to'), session['email'], request.form.get('message'))
+      (messages, conversations) = databaseWrapper.GetInbox(session['email'])
     return redirect(url_for('inbox', errorMessage=errorMessage))
 
 # LOGIN AND SIGN UP
@@ -52,7 +52,7 @@ def login():
 
       email = request.form.get("email")
       password = request.form.get("password")
-      response = authWrapper.loginUser(email, password)
+      response = authWrapper.LoginUser(email, password)
 
       if response['userId'] and response['idToken']:
         session['userId'] = response['userId']
@@ -77,9 +77,9 @@ def signup():
     databaseWrapper = db.Database()
 
     try:
-      authWrapper.createUser(name, email, password)
+      authWrapper.CreateUser(name, email, password)
       user = firebase_admin.auth.get_user_by_email(email)
-      databaseWrapper.createUser(user=user)
+      databaseWrapper.CreateUser(user=user)
 
       session['userId'] = user.uid
       session['email'] = user.email

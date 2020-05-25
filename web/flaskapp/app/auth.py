@@ -15,7 +15,7 @@ firebase = pyrebase.initialize_app(config)
 class Auth:
   auth = firebase.auth()
 
-  def createUser(self, name, email, password):
+  def CreateUser(self, name, email, password):
     """ Creates a user in the Firebase authentication table """
     user = auth.create_user(
       display_name=name,
@@ -24,7 +24,7 @@ class Auth:
     )
     return user
 
-  def loginUser(self, email, password):
+  def LoginUser(self, email, password):
     """ Logs a user in with a given username and password. Returns the response object. """
     response = {"success": False, "message": None, "userId": None, "idToken": None, "refreshToken": None, "email": None}
 
