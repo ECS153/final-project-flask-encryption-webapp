@@ -40,11 +40,11 @@ class Auth:
       databaseWrapper = db.Database()
       publicKey = databaseWrapper.GetPublicKeyForUser(email)
 
+      import json
       path = './app/config/privateKey.json'
       with open(path, "r") as f:
         data = json.load(f)
         privateKey = data[email]
-
 
       response["success"] = True
       response["message"] = "Successfully authenticated."
