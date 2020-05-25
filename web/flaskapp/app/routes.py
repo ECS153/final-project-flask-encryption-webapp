@@ -80,7 +80,7 @@ def signup():
     try:
       authWrapper.CreateUser(name, email, password)
       user = firebase_admin.auth.get_user_by_email(email)
-      databaseWrapper.CreateUser(user=user)
+      publicKey = databaseWrapper.CreateUser(user=user)
 
       session['userId'] = user.uid
       session['email'] = user.email

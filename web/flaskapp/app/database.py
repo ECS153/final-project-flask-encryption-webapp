@@ -22,6 +22,8 @@ class Database:
       'messages': []
     })
 
+    return public
+
   def CreateMessage(self, to, sender, messageText):
     """ Creates a message from to to sender containing the message """
     db = firestore.client()
@@ -59,7 +61,7 @@ class Database:
       'messages': firestore.ArrayUnion([messageId])
     })
 
-    return public
+    return ""
 
   def ReplyToMessage(self, messageId, sender, messageText):
     db = firestore.client()
