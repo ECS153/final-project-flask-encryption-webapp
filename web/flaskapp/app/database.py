@@ -99,5 +99,3 @@ class Database:
     conversations = sorted(conversations, key=getKey, reverse=True)
 
     return allMessages, conversations
-
-
