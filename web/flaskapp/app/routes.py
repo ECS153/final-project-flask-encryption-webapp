@@ -6,6 +6,7 @@ from functools import wraps
 from flask import render_template, request, session, redirect, url_for, session
 import app.database as db
 import app.auth as auth
+import app.encryption as encrypt
 
 def LoginRequired(f):
   @wraps(f)
