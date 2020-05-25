@@ -99,3 +99,9 @@ class Database:
     conversations = sorted(conversations, key=getKey, reverse=True)
 
     return allMessages, conversations
+
+  def GetPublicKeyForUser(self, userId):
+    db = firestore.client()
+    key = db.collection('users').document(userId)
+    publicKey = key.get().to_dict()
+    return publicKey

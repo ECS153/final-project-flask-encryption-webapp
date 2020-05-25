@@ -1,5 +1,6 @@
 from firebase_admin import auth
 import app.encryption as encrypt
+import app.database as db
 import pyrebase
 
 config = {
@@ -36,15 +37,18 @@ class Auth:
       idToken = user['idToken']
       refreshToken = user['refreshToken']
 
+      databaseWrapper = db.Database()
+      print(databaseWrapper.GetPublicKeyForUser(userId))
+
       response["success"] = True
       response["message"] = "Successfully authenticated."
       response['userId'] = userId
       response['idToken'] = idToken
       response['refreshToken'] = refreshToken
       response['email'] = email
-      response['publicKey'] = user['publicKey']
+      response['publicKey'] = publicKey
     except:
       response["message"] = "Failed to authenticate. Either username or password is incorrect."
 
-    print(response)
+    # print(response)
     return response
