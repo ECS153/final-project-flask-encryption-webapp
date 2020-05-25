@@ -56,6 +56,7 @@ def login():
       if response['userId'] and response['idToken']:
         session['userId'] = response['userId']
         session['email'] = response['email']
+        session['publicKey'] = response['publicKey']
 
         return redirect(url_for('inbox'))
       else:
@@ -78,10 +79,11 @@ def signup():
     try:
       authWrapper.createUser(name, email, password)
       user = firebase_admin.auth.get_user_by_email(email)
-      databaseWrapper.createUser(user=user)
+      publicKey = databaseWrapper.createUser(user=user)
 
       session['userId'] = user.uid
       session['email'] = user.email
+      session['publicKey'] = publicKey
 
       return redirect(url_for('inbox'))
     except requests.exceptions.HTTPError as err:
