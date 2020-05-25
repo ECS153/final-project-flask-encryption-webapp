@@ -11,9 +11,10 @@ class Database:
   default_app = firebase_admin.initialize_app(cred)
 
   def CreateUser(self, user):
-    """ Creates a new user in the 'users' table in firestore. User is a firebase admin user object. """
+    """ Creates a new user in the 'users' table in firestore. User is a firebase admin user object. Returns the new users public key """
     db = firestore.client()
     doc_ref = db.collection('users').document(user.email)
+    public, private = encrypt.GenerateKeyPair(seed=None)
     doc_ref.set({
       'userId': user.uid,
       'name': user.display_name,
