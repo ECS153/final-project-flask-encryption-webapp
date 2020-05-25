@@ -39,6 +39,10 @@ class Auth:
 
       databaseWrapper = db.Database()
       publicKey = databaseWrapper.GetPublicKeyForUser(email)
+      with open(path, "r") as f:
+        data = json.load(f)
+        privateKey = data[email]
+
 
       response["success"] = True
       response["message"] = "Successfully authenticated."
@@ -47,6 +51,7 @@ class Auth:
       response['refreshToken'] = refreshToken
       response['email'] = email
       response['publicKey'] = publicKey
+      response['privateKey'] = privateKey
     except:
       response["message"] = "Failed to authenticate. Either username or password is incorrect."
 

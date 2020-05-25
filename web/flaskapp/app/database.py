@@ -15,6 +15,22 @@ class Database:
     db = firestore.client()
     doc_ref = db.collection('users').document(user.email)
     public, private = encrypt.GenerateKeyPair(seed=None)
+
+    data = {}
+    path = './app/config/privateKey.json'
+    import json
+
+    try:
+      with open(path, "r+") as f:
+        data = json.load(f)
+    except:
+      print("File does not exist.")
+
+    with open(path, "w+") as f:
+      data[user.email] = private
+      f.truncate(0)
+      json.dump(data, f)
+
     doc_ref.set({
       'userId': user.uid,
       'name': user.display_name,
@@ -23,7 +39,7 @@ class Database:
       'messages': []
     })
 
-    return public
+    return (public, private)
 
   def CreateMessage(self, to, sender, messageText):
     """ Creates a message from to to sender containing the message """
