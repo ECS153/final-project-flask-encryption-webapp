@@ -39,6 +39,8 @@ class Auth:
 
       databaseWrapper = db.Database()
       publicKey = databaseWrapper.GetPublicKeyForUser(email)
+
+      path = './app/config/privateKey.json'
       with open(path, "r") as f:
         data = json.load(f)
         privateKey = data[email]
