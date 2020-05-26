@@ -4,17 +4,21 @@
 * [Milestone 2 video](http://www.youtube.com)
 
 ### Meeting Notes
-* Decided that a logger was not necessary as well placed print statements/looking in the web client would be enough to prove encryption.
+* Decided that a logger was not necessary as well placed print statements/looking in the web client would be enough to prove encryption, especially because presentation is pre-recorded
+* Discussion with Sam regarding encryption function wrappers
+* Discussing the current issue of being unable to read your own messages after encrypting them for the recipient.
 
 ### Action Items
-*
+* Check if private key exists locally on login. If not, prompt user to import their private key file
+* Finalize encryption integration into chat
+* Fix issue of encrypting own chats with other user's public key (unable to read own chats)
 
 ### Contributions
 * [Latest Commit](https://github.com/ECS153/final-project-flask-encryption-webapp/commit/eb3af0e34abf2eb0f25c19182b05f733c98783c6)
 
 #### Karmit
-* Last Week:
-* This Week:
+* Last Week: Integrating encryption function wrappers into chat code, design doc for messaging and data flow, local storage and sending public key to database.
+* This Week: Finish encrypting chats, importing private key into new devices.
 * Blocked: None
 
 #### Noah
