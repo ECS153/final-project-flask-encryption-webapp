@@ -40,6 +40,11 @@ def inbox():
     elif request.form.get('formType') == "newMessage":
       plaintextMessage = request.form.get('message')
       publicKey = databaseWrapper.GetPublicKeyForUser(request.form.get('to'))
+
+      if not publicKey:
+        errorMessage = "That account does not exist. Please check the email and try again."
+        return redirect(url_for('inbox', errorMessage=errorMessage))
+
       ciphertext = encrypt.Encrypt(publicKey, plaintextMessage)
 
       errorMessage = databaseWrapper.CreateMessage(request.form.get('to'), session['email'], ciphertext)
