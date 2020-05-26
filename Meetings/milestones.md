@@ -4,27 +4,27 @@
 * [Milestone 2 video](http://www.youtube.com)
 
 ### Meeting Notes
-* 
+* Decided that a logger was not necessary as well placed print statements/looking in the web client would be enough to prove encryption.
 
 ### Action Items
-* 
+*
 
 ### Contributions
 * [Latest Commit](https://github.com/ECS153/final-project-flask-encryption-webapp/commit/eb3af0e34abf2eb0f25c19182b05f733c98783c6)
 
 #### Karmit
-* Last Week: 
-* This Week: 
+* Last Week:
+* This Week:
 * Blocked: None
 
 #### Noah
-* Last Week: 
-* This Week: 
+* Last Week: Implimented local storage for the private key. Design doc for database and authentication.
+* This Week:
 * Blocked: None
 
 #### Sam:
-* Last Week: 
-* This Week: 
+* Last Week:
+* This Week:
 * Blocked: none
 
 ---
