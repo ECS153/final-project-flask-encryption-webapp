@@ -27,8 +27,8 @@
 * Blocked: None
 
 #### Sam:
-* Last Week:
-* This Week:
+* Last Week: Added crytography logic to interface to allow for encryption.
+* This Week: Explore edge cases, bug fixes and if extra time explore more features.
 * Blocked: none
 
 ---
