@@ -13,8 +13,8 @@
 * [Latest Commit](https://github.com/ECS153/final-project-flask-encryption-webapp/commit/eb3af0e34abf2eb0f25c19182b05f733c98783c6)
 
 #### Karmit
-* Last Week: 
-* This Week: 
+* Last Week: Integrating encryption function wrappers into chat code, design doc for messaging and data flow, local storage and sending public key to database.
+* This Week: Finish encrypting chats, importing private key into new devices.
 * Blocked: None
 
 #### Noah
