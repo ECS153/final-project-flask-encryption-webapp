@@ -1,3 +1,34 @@
+# Milestone 3
+
+### Video Link
+* [Milestone 2 video](http://www.youtube.com)
+
+### Meeting Notes
+* 
+
+### Action Items
+* 
+
+### Contributions
+* [Latest Commit](https://github.com/ECS153/final-project-flask-encryption-webapp/commit/eb3af0e34abf2eb0f25c19182b05f733c98783c6)
+
+#### Karmit
+* Last Week: 
+* This Week: 
+* Blocked: None
+
+#### Noah
+* Last Week: 
+* This Week: 
+* Blocked: None
+
+#### Sam:
+* Last Week: 
+* This Week: 
+* Blocked: none
+
+---
+
 # Milestone 2
 
 ### Video Link
