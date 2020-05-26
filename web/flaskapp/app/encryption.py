@@ -8,18 +8,14 @@ from cryptography.hazmat.primitives import serialization
 
 def GenerateKeyPair(seed=None):
   """Returns (public, private) key pair tuple. Uses seed if given, otherwise generates random keys."""
-  if seed:
-    # generate key pair using provided seed
-    return ("publicKey", "privateKey")  # FIXME
-  else:
-    private_key = rsa.generate_private_key(public_exponent=65537,key_size=2048, backend=default_backend())
-    public_key = private_key.public_key()
-    public_pem = public_key.public_bytes(encoding=serialization.Encoding.PEM, format=serialization.PublicFormat.SubjectPublicKeyInfo)
-    private_pem = private_key.private_bytes(
-        encoding=serialization.Encoding.PEM,
-        format=serialization.PrivateFormat.PKCS8,
-        encryption_algorithm=serialization.NoEncryption())
-    return (public_pem.decode(), private_pem.decode())
+  private_key = rsa.generate_private_key(public_exponent=65537,key_size=2048, backend=default_backend())
+  public_key = private_key.public_key()
+  public_pem = public_key.public_bytes(encoding=serialization.Encoding.PEM, format=serialization.PublicFormat.SubjectPublicKeyInfo)
+  private_pem = private_key.private_bytes(
+      encoding=serialization.Encoding.PEM,
+      format=serialization.PrivateFormat.PKCS8,
+      encryption_algorithm=serialization.NoEncryption())
+  return (public_pem.decode(), private_pem.decode())
 
 def Encrypt(publicKey, plaintext):
   publicKey = publicKey.encode('utf-8')
