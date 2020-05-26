@@ -1,7 +1,7 @@
 # Milestone 3
 
 ### Video Link
-* [Milestone 2 video](http://www.youtube.com)
+* [Milestone 2 video](https://youtu.be/RrzpBmPMTVk)
 
 ### Meeting Notes
 * Decided that a logger was not necessary as well placed print statements/looking in the web client would be enough to prove encryption, especially because presentation is pre-recorded
