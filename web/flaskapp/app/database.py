@@ -116,9 +116,9 @@ class Database:
 
     conversations = sorted(conversations, key=GetKey, reverse=True)
 
-    for msgId, msgObj in allMessages.items():
-      for messageArray in msgObj["messages"]:
-        messageArray["messageContents"] = encrypt.Decrypt(privateKey, messageArray["messageContents"])
+    # for msgId, msgObj in allMessages.items():
+    #   for messageArray in msgObj["messages"]:
+    #     messageArray["messageContents"] = encrypt.Decrypt(privateKey, messageArray["messageContents"])
 
     return allMessages, conversations
 
