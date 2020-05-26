@@ -115,7 +115,6 @@ def signup():
   return render_template('signup.html', errorMessage=errorMessage)
 
 @app.route("/logout", methods=['GET', 'POST'])
-@LoginRequired
 def logout():
   session.clear()
   return redirect(url_for('login'))
