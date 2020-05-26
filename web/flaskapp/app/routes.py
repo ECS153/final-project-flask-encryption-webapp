@@ -27,7 +27,7 @@ def inbox():
     errorMessage = ""
 
   if request.method == "GET":
-    (messages, conversations) = databaseWrapper.GetInbox(session['email'])
+    (messages, conversations) = databaseWrapper.GetInbox(session['email'], session['privateKey'])
     return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages, errorMessage=errorMessage)
   elif request.method == "POST":
     if request.form.get('formType') == "reply":
@@ -36,14 +36,14 @@ def inbox():
       ciphertext = encrypt.Encrypt(publicKey, plaintextMessage)
 
       databaseWrapper.ReplyToMessage(request.form.get('msgId'), session['email'], ciphertext)
-      (messages, conversations) = databaseWrapper.GetInbox(session['email'])
+      (messages, conversations) = databaseWrapper.GetInbox(session['email'], session['privateKey'])
     elif request.form.get('formType') == "newMessage":
       plaintextMessage = request.form.get('message')
       publicKey = databaseWrapper.GetPublicKeyForUser(request.form.get('to'))
       ciphertext = encrypt.Encrypt(publicKey, plaintextMessage)
 
       errorMessage = databaseWrapper.CreateMessage(request.form.get('to'), session['email'], ciphertext)
-      (messages, conversations) = databaseWrapper.GetInbox(session['email'])
+      (messages, conversations) = databaseWrapper.GetInbox(session['email'], session['privateKey'])
     return redirect(url_for('inbox', errorMessage=errorMessage))
 
 # LOGIN AND SIGN UP
