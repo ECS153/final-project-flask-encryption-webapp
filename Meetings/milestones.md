@@ -22,7 +22,7 @@
 * Blocked: None
 
 #### Noah
-* Last Week: Implimented local storage for the private key. Design doc for database and authentication.
+* Last Week: Implemented local storage for the private key. Design doc for database and authentication.
 * This Week: Finish encryption on chats. Work on a soliution to decypt your own messages. Check if private key exists on login and figure how to transfer messages to new device.
 * Blocked: None
 
