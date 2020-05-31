@@ -85,7 +85,7 @@ def login():
 
         return redirect(url_for('inbox'))
       else:
-        errorMessage = "Either your username or password is incorrect! Please try again"
+        errorMessage = response['message']
         return render_template('index.html', errorMessage=errorMessage)
 
 
