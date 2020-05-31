@@ -8,8 +8,11 @@
 
 <div class="container topBar">
   <div class="row">
-    <div class="col-9">
+    <div class="col-7">
       <h1>Inbox</h1>
+    </div>
+    <div class="col-2">
+      <button type="button" class="btn btn-warning" data-toggle="modal" data-target=".viewPrivateKey">Move to New Device</button>
     </div>
     <div class="col-1">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#composeModal">Compose</button>
@@ -18,6 +21,27 @@
         <a href="{{ url_for('logout') }}"><button type="submit" class="btn btn-danger">Logout</button></a>
     </div>
     <div class="col-1"></div>
+  </div>
+</div>
+
+<div class="modal fade viewPrivateKey" id="viewPrivateKey" tabindex="-1" role="dialog" aria-labelledby="viewPrivateKeyLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="composeModalLabel">Place this in <b>/web/flaskapp/app/config/privateKey.json</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="word-wrap: break-word;">
+
+        <p>&ldquo;{{ "{" }}{{session['email']}}&rdquo;:&ldquo;{{session['privateKey']}}{{ "}" }}&rdquo;</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
   </div>
 </div>
 
