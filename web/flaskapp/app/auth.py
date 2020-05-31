@@ -42,9 +42,13 @@ class Auth:
 
       import json
       path = './app/config/privateKey.json'
-      with open(path, "r") as f:
-        data = json.load(f)
-        privateKey = data[email]
+      try:
+        with open(path, "r") as f:
+          data = json.load(f)
+          privateKey = data[email]
+      except:
+        response["message"] = "Private key does not exist. Please add your private key to \'/SecureChat/web/flaskapp/app/config\'"
+        return response
 
       response["success"] = True
       response["message"] = "Successfully authenticated."
