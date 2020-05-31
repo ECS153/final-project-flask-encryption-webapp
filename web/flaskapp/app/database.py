@@ -41,7 +41,7 @@ class Database:
 
     return (public, private)
 
-  def CreateMessage(self, to, sender, messageText):
+  def CreateMessage(self, to, sender, messageTextSender, messageTextTo):
     """ Creates a message from to to sender containing the message """
     db = firestore.client()
     user = db.collection('users').document(to)
@@ -57,7 +57,10 @@ class Database:
         {
           "timestamp": datetime.datetime.now(),
           "sender": sender,
-          "messageContents": messageText
+          "messageContents": {
+            to: messageTextTo,
+            sender: messageTextSender
+          }
         }
       ]
     }
@@ -80,14 +83,17 @@ class Database:
 
     return ""
 
-  def ReplyToMessage(self, messageId, sender, messageText):
+  def ReplyToMessage(self, messageId, to, sender, messageTextSender, messageTextTo):
     db = firestore.client()
     message = db.collection('messages').document(messageId)
 
     reply = {
       "timestamp": datetime.datetime.now(),
       "sender": sender,
-      "messageContents": messageText
+      "messageContents": {
+        to: messageTextTo,
+        sender: messageTextSender
+      }
     }
 
     message.update({
@@ -115,11 +121,6 @@ class Database:
       return item[0]
 
     conversations = sorted(conversations, key=GetKey, reverse=True)
-
-    # for msgId, msgObj in allMessages.items():
-    #   for messageArray in msgObj["messages"]:
-    #     messageArray["messageContents"] = encrypt.Decrypt(privateKey, messageArray["messageContents"])
-
     return allMessages, conversations
 
   def GetPublicKeyForUser(self, email):

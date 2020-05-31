@@ -28,14 +28,23 @@ def inbox():
 
   if request.method == "GET":
     (messages, conversations) = databaseWrapper.GetInbox(session['email'], session['privateKey'])
+
+    for messageId, messageObj in messages.items():
+      for message in messageObj['messages']:
+        encryptedMessage = message['messageContents'][session['email']]
+        decryptedMessage = encrypt.Decrypt(session['privateKey'], encryptedMessage)
+        message['messageContents'] = decryptedMessage
+
     return render_template('inbox.html', title="Inbox", conversations=conversations, messages=messages, errorMessage=errorMessage)
   elif request.method == "POST":
     if request.form.get('formType') == "reply":
       plaintextMessage = request.form.get('message')
       publicKey = databaseWrapper.GetPublicKeyForUser(request.form.get('to'))
-      ciphertext = encrypt.Encrypt(publicKey, plaintextMessage)
 
-      databaseWrapper.ReplyToMessage(request.form.get('msgId'), session['email'], ciphertext)
+      ciphertextSender = encrypt.Encrypt(session['publicKey'], plaintextMessage)
+      ciphertextTo = encrypt.Encrypt(publicKey, plaintextMessage)
+
+      databaseWrapper.ReplyToMessage(request.form.get('msgId'), request.form.get('to'), session['email'], ciphertextSender, ciphertextTo)
       (messages, conversations) = databaseWrapper.GetInbox(session['email'], session['privateKey'])
     elif request.form.get('formType') == "newMessage":
       plaintextMessage = request.form.get('message')
@@ -45,9 +54,10 @@ def inbox():
         errorMessage = "That account does not exist. Please check the email and try again."
         return redirect(url_for('inbox', errorMessage=errorMessage))
 
-      ciphertext = encrypt.Encrypt(publicKey, plaintextMessage)
+      ciphertextSender = encrypt.Encrypt(session['publicKey'], plaintextMessage)
+      ciphertextTo = encrypt.Encrypt(publicKey, plaintextMessage)
 
-      errorMessage = databaseWrapper.CreateMessage(request.form.get('to'), session['email'], ciphertext)
+      errorMessage = databaseWrapper.CreateMessage(request.form.get('to'), session['email'], ciphertextSender, ciphertextTo)
       (messages, conversations) = databaseWrapper.GetInbox(session['email'], session['privateKey'])
     return redirect(url_for('inbox', errorMessage=errorMessage))
 
