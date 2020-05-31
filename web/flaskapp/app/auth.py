@@ -47,7 +47,7 @@ class Auth:
           data = json.load(f)
           privateKey = data[email]
       except:
-        response["message"] = "Private key does not exist. Please add your private key to \'/SecureChat/web/flaskapp/app/config\'"
+        response["message"] = "Private key does not exist. Please add your private key to \'/web/flaskapp/app/config/privateKey.json\'. Click on \"Move to New Device\" in original client for more information."
         return response
 
       response["success"] = True

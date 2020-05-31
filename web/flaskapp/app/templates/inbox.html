@@ -35,7 +35,7 @@
       </div>
       <div class="modal-body" style="word-wrap: break-word;">
 
-        <p>&ldquo;{{ "{" }}{{session['email']}}&rdquo;:&ldquo;{{session['privateKey']}}{{ "}" }}&rdquo;</p>
+        <p>{{ "{" }}&quot;{{session['email']}}&quot;:&quot;{{session['privateKey'] | replace('\n','\\n')}}&quot;{{ "}" }}</p>
 
       </div>
       <div class="modal-footer">
